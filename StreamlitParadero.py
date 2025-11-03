@@ -190,5 +190,5 @@ else:
             )
         except requests.RequestException:
             st.error("⚠️ Unable to fetch the CV from GitHub right now. Please try again in a moment.")
-git status
+
 
