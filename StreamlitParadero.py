@@ -188,6 +188,6 @@ else:
         st.write("Built with ❤️ using Streamlit by Ivann James Paradero")
 
     else:
-        st.error("⚠️ Unable to fetch the CV from GitHub.")cd "C:/Users/Ivann James/Desktop/Programming/Pyhton"
+        st.error("⚠️ Unable to fetch the CV from GitHub.")
 
 
