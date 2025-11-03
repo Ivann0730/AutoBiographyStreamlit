@@ -157,37 +157,38 @@ if page == "Home":
 # ===== PAGE 2: CURRICULUM VITAE =====
 else:
     st.markdown("<h1 style='text-align:center;'>📄 Curriculum Vitae</h1>", unsafe_allow_html=True)
-    st.write("Here’s a copy of my full CV. You can view or download it below:")
+    st.write("Here’s a copy of my full CV. You can preview it below or download it:")
 
     cv_url = "https://raw.githubusercontent.com/Ivann0730/AutoBiographyStreamlit/main/Ivann_James_Paradero_CV.pdf"
+    viewer_url = f"https://docs.google.com/gview?embedded=true&url={cv_url}"
 
-    # Try to fetch and display the PDF
-    response = requests.get(cv_url)
+    # Open in new tab (viewer) – won't trigger a download
+    st.markdown(f"[📄 Open CV in a new tab (preview)]({viewer_url})")
 
-    if response.status_code == 200:
-        # Show the download link + button
-        st.markdown(f"[📄 Click here to open CV in a new tab]({cv_url})")
-        st.download_button(
-            label="📥 Download CV (PDF)",
-            data=response.content,
-            file_name="Ivann_James_Paradero_CV.pdf",
-            mime="application/pdf"
-        )
+    st.markdown("---")
 
-        st.markdown("---")
+    # Inline preview via Google Viewer (prevents auto-download)
+    st.markdown(
+        f"""
+        <iframe src="{viewer_url}" width="100%" height="800px" style="border:none; border-radius:10px;"></iframe>
+        """,
+        unsafe_allow_html=True
+    )
 
-        # Embed the PDF inline (viewer style)
-        st.markdown(
-            f"""
-            <iframe src="{cv_url}" width="100%" height="800px" style="border:none; border-radius:10px;"></iframe>
-            """,
-            unsafe_allow_html=True
-        )
+    st.markdown("---")
 
-        st.markdown("---")
-        st.write("Built with ❤️ using Streamlit by Ivann James Paradero")
-
-    else:
-        st.error("⚠️ Unable to fetch the CV from GitHub.")
-
+    # Provide an explicit download button (only downloads on click)
+    if st.button("📥 Prepare Download"):
+        try:
+            resp = requests.get(cv_url, timeout=15)
+            resp.raise_for_status()
+            st.download_button(
+                label="📥 Download CV (PDF)",
+                data=resp.content,
+                file_name="Ivann_James_Paradero_CV.pdf",
+                mime="application/pdf"
+            )
+        except requests.RequestException:
+            st.error("⚠️ Unable to fetch the CV from GitHub right now. Please try again in a moment.")
+git status
 
