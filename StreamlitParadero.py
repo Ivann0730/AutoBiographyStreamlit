@@ -159,15 +159,17 @@ else:
     st.markdown("<h1 style='text-align:center;'>📄 Curriculum Vitae</h1>", unsafe_allow_html=True)
     st.write("Here’s a copy of my full CV. You can view or download it below.")
 
-    with open("C:/Users/Ivann James/Downloads/Ivann_James_Paradero_CV.pdf", "rb") as pdf_file:
-        PDFbyte = pdf_file.read()
+    cv_url = "https://raw.githubusercontent.com/Ivann0730/AutoBiographyStreamlit/main/Ivann_James_Paradero_CV.pdf"
 
+response = requests.get(cv_url)
+
+if response.status_code == 200:
+    st.markdown(f"[📄 Click here to open CV in a new tab]({cv_url})")
     st.download_button(
-        label="📄 Download CV (PDF)",
-        data=PDFbyte,
+        label="📥 Download CV (PDF)",
+        data=response.content,
         file_name="Ivann_James_Paradero_CV.pdf",
         mime="application/pdf"
     )
-
-    st.markdown("---")
-    st.pdf("C:/Users/Ivann James/Downloads/Ivann_James_Paradero_CV.pdf")
+else:
+    st.error("Unable to fetch the CV from GitHub.")
