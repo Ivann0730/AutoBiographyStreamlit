@@ -157,19 +157,37 @@ if page == "Home":
 # ===== PAGE 2: CURRICULUM VITAE =====
 else:
     st.markdown("<h1 style='text-align:center;'>📄 Curriculum Vitae</h1>", unsafe_allow_html=True)
-    st.write("Here’s a copy of my full CV. You can view or download it below.")
+    st.write("Here’s a copy of my full CV. You can view or download it below:")
 
     cv_url = "https://raw.githubusercontent.com/Ivann0730/AutoBiographyStreamlit/main/Ivann_James_Paradero_CV.pdf"
 
-response = requests.get(cv_url)
+    # Try to fetch and display the PDF
+    response = requests.get(cv_url)
 
-if response.status_code == 200:
-    st.markdown(f"[📄 Click here to open CV in a new tab]({cv_url})")
-    st.download_button(
-        label="📥 Download CV (PDF)",
-        data=response.content,
-        file_name="Ivann_James_Paradero_CV.pdf",
-        mime="application/pdf"
-    )
-else:
-    st.error("Unable to fetch the CV from GitHub.")
+    if response.status_code == 200:
+        # Show the download link + button
+        st.markdown(f"[📄 Click here to open CV in a new tab]({cv_url})")
+        st.download_button(
+            label="📥 Download CV (PDF)",
+            data=response.content,
+            file_name="Ivann_James_Paradero_CV.pdf",
+            mime="application/pdf"
+        )
+
+        st.markdown("---")
+
+        # Embed the PDF inline (viewer style)
+        st.markdown(
+            f"""
+            <iframe src="{cv_url}" width="100%" height="800px" style="border:none; border-radius:10px;"></iframe>
+            """,
+            unsafe_allow_html=True
+        )
+
+        st.markdown("---")
+        st.write("Built with ❤️ using Streamlit by Ivann James Paradero")
+
+    else:
+        st.error("⚠️ Unable to fetch the CV from GitHub.")cd "C:/Users/Ivann James/Desktop/Programming/Pyhton"
+
+
