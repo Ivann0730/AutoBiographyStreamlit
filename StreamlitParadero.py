@@ -7,7 +7,7 @@ st.set_page_config(page_title="Ivann James Paradero | Portfolio", layout="wide",
 
 # ===== Sidebar (Profile + Contact only) =====
 with st.sidebar:
-    st.image("https://raw.githubusercontent.com/Ivann0730/AutoBiographyStreamlit/main/PPstreamlit.jpg", width=200, caption="Ivann James Paradero")
+    x
     st.title("Ivann James Paradero")
     st.write("Bachelor of Science in Computer Science student at Cebu Institute of Technology – University")
     st.markdown("---")
@@ -57,6 +57,9 @@ st.markdown("""
     <div class="floating-nav">
         <form action="" method="get">
             <button name="page" value="Home" class="nav-btn">🏠 Home</button>
+            <button name="page" value="Goals" class="nav-btn">🎯 Goals</button>
+            <button name="page" value="Education" class="nav-btn">🎓 Education</button>
+            <button name="page" value="Skills" class="nav-btn">🧠 Skills</button>
             <button name="page" value="CV" class="nav-btn">📄 Curriculum Vitae</button>
         </form>
     </div>
@@ -191,4 +194,79 @@ else:
         except requests.RequestException:
             st.error("⚠️ Unable to fetch the CV from GitHub right now. Please try again in a moment.")
 
+# ===== Footer =====    # ===== PAGE 3: GOALS =====
+    elif page == "Goals":
+        st.markdown("<h1 style='text-align:center;'>🎯 My Goals</h1>", unsafe_allow_html=True)
+        st.write("""
+        As a **Computer Science student**, my goals are centered on continuous learning, technical growth, and personal development. 
+        These objectives guide me toward becoming a skilled and responsible professional in the tech industry.
+        """)
+
+        st.markdown("---")
+
+        st.subheader("🎓 Academic & Learning Goals")
+        st.write("""
+        - Strengthen my understanding of **data structures, algorithms, and software design principles**.  
+        - Develop a solid grasp of **cybersecurity**, **artificial intelligence**, and **web development**.  
+        - Consistently improve my problem-solving skills through **coding challenges** and **competitive programming**.  
+        - Build a strong academic portfolio by completing impactful **capstone projects**.
+        """)
+
+        st.subheader("💻 Career & Technical Goals")
+        st.write("""
+        - Contribute to open-source projects and collaborate with developers worldwide.  
+        - Create innovative applications that solve **real-world problems** using modern technologies.  
+        - Gain experience in **backend and frontend development**, **database management**, and **cloud computing**.  
+        - Prepare for certifications such as **AWS Certified Developer**, **Google IT Professional**, or **CompTIA Security+**.  
+        - Build a personal brand as a versatile and reliable software developer.
+        """)
+
+        st.subheader("🌱 Personal Growth Goals")
+        st.write("""
+        - Maintain a balance between academics, work, and personal life.  
+        - Continue exploring new places and meeting people who inspire creativity and growth.  
+        - Mentor or help other students who are starting their journey in Computer Science.  
+        - Keep learning every day — not just about technology, but about becoming a better version of myself.
+        """)
+
+        st.markdown("---")
+        st.success("🚀 My ultimate goal is to become a skilled, well-rounded software developer who creates technology that makes people's lives better.")
+# ===== PAGE 4: EDUCATION =====
+    elif page == "Education":
+        st.markdown("<h1 style='text-align:center;'>🎓 Education</h1>", unsafe_allow_html=True)
+
+        st.write("""
+        My educational journey reflects my growth from childhood curiosity to a focused passion for computer science.
+        Each stage has shaped not only my academic skills but also my discipline and motivation to improve continuously.
+        """)
+
+        st.markdown("---")
+
+        st.subheader("🏫 Cebu Institute of Technology – University")
+        st.write("""
+        **Bachelor of Science in Computer Science**  
+        *Cebu City, Philippines | 2023 – Present*
+        """)
+
+        st.subheader("🏫 Science and Technology Education Center (STEC)")
+        st.write("""
+        **Senior High School – Accounting, Business, and Management Strand**  
+        *With Honors – 92 GWA*  
+        *Lapu-Lapu City, Philippines | 2021 – 2023*
+        """)
+
+        st.subheader("🏫 Marigondon Elementary School")
+        st.write("""
+        **Elementary (Grade 6)**  
+        *Lapu-Lapu City, Philippines*
+        """)
+
+        st.subheader("🏫 Indiana Aerospace University")
+        st.write("""
+        **Elementary (Grades 1–5)**  
+        *Lapu-Lapu City, Philippines*
+        """)
+
+        st.markdown("---")
+        st.success("📘 Education is not just about learning facts — it’s about training the mind to think critically and creatively.")
 
