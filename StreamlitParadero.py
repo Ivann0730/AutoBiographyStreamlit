@@ -3,6 +3,7 @@ import requests
 from PIL import Image
 import pandas as pd
 
+# ===== Page Configuration =====
 st.set_page_config(page_title="Ivann James Paradero | Portfolio", layout="wide", page_icon=":sparkles:")
 
 # ===== Sidebar (Profile + Contact only) =====
@@ -64,13 +65,14 @@ st.markdown("""
     </div>
 """, unsafe_allow_html=True)
 
-# Get current page
+# ===== Get Current Page =====
 page = st.query_params.get("page", ["Home"])
 if isinstance(page, list):
     page = page[0]
 
-
+# ==============================
 # ===== PAGE 1: HOME =====
+# ==============================
 if page == "Home":
     st.markdown("""
         <style>@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
@@ -154,32 +156,91 @@ if page == "Home":
     st.header("🏆 GitHub Trophies")
     st.image("https://github-profile-trophy.vercel.app/?username=Ivann0730&theme=radical&margin-w=10&margin-h=10", use_container_width=True)
 
-    st.markdown("---")
+# ==============================
+# ===== PAGE 2: GOALS =====
+# ==============================
+elif page == "Goals":
+    st.markdown("<h1 style='text-align:center;'>🎯 My Goals</h1>", unsafe_allow_html=True)
+    st.write("""
+    As a **Computer Science student**, my goals are centered on continuous learning, technical growth, and personal development. 
+    These objectives guide me toward becoming a skilled and responsible professional in the tech industry.
+    """)
 
-# ===== PAGE 2: CURRICULUM VITAE =====
-else:
+    st.subheader("🎓 Academic & Learning Goals")
+    st.write("""
+    - Strengthen my understanding of **data structures, algorithms, and software design principles**.  
+    - Develop a solid grasp of **cybersecurity**, **artificial intelligence**, and **web development**.  
+    - Consistently improve my problem-solving skills through **coding challenges** and **competitive programming**.  
+    - Build a strong academic portfolio by completing impactful **capstone projects**.
+    """)
+
+    st.subheader("💻 Career & Technical Goals")
+    st.write("""
+    - Contribute to open-source projects and collaborate with developers worldwide.  
+    - Create innovative applications that solve **real-world problems** using modern technologies.  
+    - Gain experience in **backend and frontend development**, **database management**, and **cloud computing**.  
+    - Prepare for certifications such as **AWS Certified Developer**, **Google IT Professional**, or **CompTIA Security+**.  
+    - Build a personal brand as a versatile and reliable software developer.
+    """)
+
+    st.subheader("🌱 Personal Growth Goals")
+    st.write("""
+    - Maintain a balance between academics, work, and personal life.  
+    - Continue exploring new places and meeting people who inspire creativity and growth.  
+    - Mentor or help other students who are starting their journey in Computer Science.  
+    - Keep learning every day — not just about technology, but about becoming a better version of myself.
+    """)
+
+    st.success("🚀 My ultimate goal is to become a skilled, well-rounded software developer who creates technology that makes people's lives better.")
+
+# ==============================
+# ===== PAGE 3: EDUCATION =====
+# ==============================
+elif page == "Education":
+    st.markdown("<h1 style='text-align:center;'>🎓 Education</h1>", unsafe_allow_html=True)
+    st.write("""
+    My educational journey reflects my growth from childhood curiosity to a focused passion for computer science.
+    Each stage has shaped not only my academic skills but also my discipline and motivation to improve continuously.
+    """)
+
+    st.subheader("🏫 Cebu Institute of Technology – University")
+    st.write("**Bachelor of Science in Computer Science**  \n*Cebu City, Philippines | 2023 – Present*")
+
+    st.subheader("🏫 Science and Technology Education Center (STEC)")
+    st.write("**Senior High School – ABM Strand**  \n*With Honors – 92 GWA*  \n*Lapu-Lapu City, Philippines | 2021 – 2023*")
+
+    st.subheader("🏫 Indiana Aerospace University")
+    st.write("**Elementary (Grades 1–5)**  \n*Lapu-Lapu City, Philippines*")
+
+    st.subheader("🏫 Marigondon Elementary School")
+    st.write("**Elementary (Grade 6)**  \n*Lapu-Lapu City, Philippines*")
+
+# ==============================
+# ===== PAGE 4: SKILLS =====
+# ==============================
+elif page == "Skills":
+    st.markdown("<h1 style='text-align:center;'>🧠 Skills</h1>", unsafe_allow_html=True)
+    st.write("""
+    - **Programming Languages:** Java, C, C#, C++, Python, PHP, HTML, CSS  
+    - **Frameworks & Tools:** Django, Firebase, MySQL, Figma, Canva, Gimp, Aseprite  
+    - **Soft Skills:** Leadership, teamwork, adaptability, creativity, and time management  
+    - **Technical Interests:** Game development, cybersecurity, software engineering  
+    """)
+
+# ==============================
+# ===== PAGE 5: CV =====
+# ==============================
+elif page == "CV":
     st.markdown("<h1 style='text-align:center;'>📄 Curriculum Vitae</h1>", unsafe_allow_html=True)
     st.write("Here’s a copy of my full CV. You can preview it below or download it:")
 
     cv_url = "https://raw.githubusercontent.com/Ivann0730/AutoBiographyStreamlit/main/Ivann_James_Paradero_CV.pdf"
     viewer_url = f"https://docs.google.com/gview?embedded=true&url={cv_url}"
 
-    # Open in new tab (viewer) – won't trigger a download
     st.markdown(f"[📄 Open CV in a new tab (preview)]({viewer_url})")
 
-    st.markdown("---")
+    st.markdown(f"<iframe src='{viewer_url}' width='100%' height='800px' style='border:none; border-radius:10px;'></iframe>", unsafe_allow_html=True)
 
-    # Inline preview via Google Viewer (prevents auto-download)
-    st.markdown(
-        f"""
-        <iframe src="{viewer_url}" width="100%" height="800px" style="border:none; border-radius:10px;"></iframe>
-        """,
-        unsafe_allow_html=True
-    )
-
-    st.markdown("---")
-
-    # Provide an explicit download button (only downloads on click)
     if st.button("📥 Prepare Download"):
         try:
             resp = requests.get(cv_url, timeout=15)
@@ -191,81 +252,4 @@ else:
                 mime="application/pdf"
             )
         except requests.RequestException:
-            st.error("⚠️ Unable to fetch the CV from GitHub right now. Please try again in a moment.")
-
-# ===== Footer =====    # ===== PAGE 3: GOALS =====
-    elif page == "Goals":
-        st.markdown("<h1 style='text-align:center;'>🎯 My Goals</h1>", unsafe_allow_html=True)
-        st.write("""
-        As a **Computer Science student**, my goals are centered on continuous learning, technical growth, and personal development. 
-        These objectives guide me toward becoming a skilled and responsible professional in the tech industry.
-        """)
-
-        st.markdown("---")
-
-        st.subheader("🎓 Academic & Learning Goals")
-        st.write("""
-        - Strengthen my understanding of **data structures, algorithms, and software design principles**.  
-        - Develop a solid grasp of **cybersecurity**, **artificial intelligence**, and **web development**.  
-        - Consistently improve my problem-solving skills through **coding challenges** and **competitive programming**.  
-        - Build a strong academic portfolio by completing impactful **capstone projects**.
-        """)
-
-        st.subheader("💻 Career & Technical Goals")
-        st.write("""
-        - Contribute to open-source projects and collaborate with developers worldwide.  
-        - Create innovative applications that solve **real-world problems** using modern technologies.  
-        - Gain experience in **backend and frontend development**, **database management**, and **cloud computing**.  
-        - Prepare for certifications such as **AWS Certified Developer**, **Google IT Professional**, or **CompTIA Security+**.  
-        - Build a personal brand as a versatile and reliable software developer.
-        """)
-
-        st.subheader("🌱 Personal Growth Goals")
-        st.write("""
-        - Maintain a balance between academics, work, and personal life.  
-        - Continue exploring new places and meeting people who inspire creativity and growth.  
-        - Mentor or help other students who are starting their journey in Computer Science.  
-        - Keep learning every day — not just about technology, but about becoming a better version of myself.
-        """)
-
-        st.markdown("---")
-        st.success("🚀 My ultimate goal is to become a skilled, well-rounded software developer who creates technology that makes people's lives better.")
-# ===== PAGE 4: EDUCATION =====
-    elif page == "Education":
-        st.markdown("<h1 style='text-align:center;'>🎓 Education</h1>", unsafe_allow_html=True)
-
-        st.write("""
-        My educational journey reflects my growth from childhood curiosity to a focused passion for computer science.
-        Each stage has shaped not only my academic skills but also my discipline and motivation to improve continuously.
-        """)
-
-        st.markdown("---")
-
-        st.subheader("🏫 Cebu Institute of Technology – University")
-        st.write("""
-        **Bachelor of Science in Computer Science**  
-        *Cebu City, Philippines | 2023 – Present*
-        """)
-
-        st.subheader("🏫 Science and Technology Education Center (STEC)")
-        st.write("""
-        **Senior High School – Accounting, Business, and Management Strand**  
-        *With Honors – 92 GWA*  
-        *Lapu-Lapu City, Philippines | 2021 – 2023*
-        """)
-
-        st.subheader("🏫 Marigondon Elementary School")
-        st.write("""
-        **Elementary (Grade 6)**  
-        *Lapu-Lapu City, Philippines*
-        """)
-
-        st.subheader("🏫 Indiana Aerospace University")
-        st.write("""
-        **Elementary (Grades 1–5)**  
-        *Lapu-Lapu City, Philippines*
-        """)
-
-        st.markdown("---")
-        st.success("📘 Education is not just about learning facts — it’s about training the mind to think critically and creatively.")
-
+            st.error("⚠️ Unable to fetch the CV from GitHub right now. Please try again later.")
