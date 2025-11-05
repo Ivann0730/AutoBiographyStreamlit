@@ -7,7 +7,6 @@ st.set_page_config(page_title="Ivann James Paradero | Portfolio", layout="wide",
 
 # ===== Sidebar (Profile + Contact only) =====
 with st.sidebar:
-    x
     st.title("Ivann James Paradero")
     st.write("Bachelor of Science in Computer Science student at Cebu Institute of Technology – University")
     st.markdown("---")
